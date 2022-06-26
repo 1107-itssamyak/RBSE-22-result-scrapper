@@ -9,6 +9,7 @@ headers = {
 def GetScore(admission):
     session = requests.Session()
     soup = session.post(
+        # current website for class 10 result 
         url='https://rajeduboard.rajasthan.gov.in/RESULT2022/SEV/Roll_Output.asp',
         # headers=headers,
         params={
@@ -37,7 +38,7 @@ def GetScore(admission):
 
 
 # creating csv file
-filename = "cbse.csv"
+filename = "rbse22.csv"
 
 # open csv file to write
 f = open(filename, 'w')
@@ -46,7 +47,9 @@ f = open(filename, 'w')
 header = "NAME, ROLL NO, , HINDI, ENGLISH, SCIENCE, SOCIAL SCIENCE, MATHEMATICS, SANSKRIT, TOTAL NUMBER\n"
 f.write(header)
 
+# range of numbers 
 for i in range(1978451, 1978522):
+    # exceptions / absenties
     if(i == 1978461 or i == 1978484 or i == 1978491 or i == 1978517):
         continue
     GetScore(i)
